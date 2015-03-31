@@ -160,6 +160,12 @@
             $scope.bugout = bugout;
             bugout.log('Environment: Full hand movement');
          
+            $scope.finishLog = function() {
+             bugout.log('Done');
+             $scope.bugout.downloadLog();
+             $scope.bugout.clear();
+            }
+         
             // TODO: lol, this controller is out of control. Refactor and maybe actually
             // use Angular properly.
             navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
