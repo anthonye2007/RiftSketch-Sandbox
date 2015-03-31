@@ -155,6 +155,11 @@
 
     module.controller('SketchController', ['$scope',
         function ($scope) {
+         
+            var bugout = new debugout();
+            $scope.bugout = bugout;
+            bugout.log('Environment: Full hand movement');
+         
             // TODO: lol, this controller is out of control. Refactor and maybe actually
             // use Angular properly.
             navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -679,13 +684,13 @@
                     /* jshint -W054 */
                     this.codeHeader = CODE_HEADER;
                     var _sketchFunc = new Function(
-                        'scene', 'camera', 'api',
+                        'scene', 'camera', 'api', 'logger',
                         this.codeHeader + code
                     );
 
                     /* jshint +W054 */
                     _sketchLoop = _sketchFunc(
-                        this.riftSandbox.scene, this.riftSandbox.cameraPivot, api);
+                        this.riftSandbox.scene, this.riftSandbox.cameraPivot, api, $scope.bugout);
                 } catch (err) {
                     $scope.error = err.toString();
                 }
