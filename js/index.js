@@ -676,7 +676,8 @@
 				// Use custom bonehand rendering plugin
 				Leap.loopController.use('customBoneHand', {
 					scene: this.riftSandbox.scene,
-                    arm: true,
+                    arm: false,
+                    opacity: 0.2,
                     render: (function () {
                         return function (timestamp) {
                             this.riftSandbox.render()
